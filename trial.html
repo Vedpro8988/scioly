@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Westview SciOly Hub | Leadership Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .sidebar-item:hover { background: #eef2ff; color: #4f46e5; }
+        .vault-gradient { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 border-r bg-white flex flex-col">
+        <div class="p-6 border-b">
+            <h1 class="text-xl font-bold text-indigo-600 flex items-center gap-2">
+                <i data-lucide="beaker"></i> Westview SciOly
+            </h1>
+        </div>
+        <nav class="flex-1 p-4 space-y-2">
+            <button onclick="showPage('dashboard')" class="sidebar-item w-full flex items-center gap-3 p-3 rounded-lg transition text-gray-600">
+                <i data-lucide="layout-dashboard"></i> Dashboard
+            </button>
+            <button onclick="showPage('wiki')" class="sidebar-item w-full flex items-center gap-3 p-3 rounded-lg transition text-gray-600">
+                <i data-lucide="book-open"></i> The Wiki (Methods)
+            </button>
+            <button onclick="showPage('vault-auth')" class="sidebar-item w-full flex items-center gap-3 p-3 rounded-lg transition text-gray-600">
+                <i data-lucide="lock"></i> The Vault (Binders)
+            </button>
+            <button onclick="showPage('ai-oracle')" class="sidebar-item w-full flex items-center gap-3 p-3 rounded-lg transition text-gray-600">
+                <i data-lucide="sparkles"></i> AI Oracle
+            </button>
+        </nav>
+        <div class="p-4 border-t text-xs text-gray-400 text-center">
+            Westview High School v1.0
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 overflow-y-auto relative">
+        
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="p-8 page-content">
+            <header class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Team Progress Tracker</h2>
+                <p class="text-gray-500 text-lg">Real-time readiness for Regionals & States.</p>
+            </header>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-gray-400 text-sm font-semibold uppercase">Total Readiness</h3>
+                    <p class="text-4xl font-bold text-indigo-600">68%</p>
+                    <div class="w-full bg-gray-200 h-2 mt-4 rounded-full">
+                        <div class="bg-indigo-600 h-2 rounded-full" style="width: 68%"></div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-gray-400 text-sm font-semibold uppercase">Days to Regionals</h3>
+                    <p class="text-4xl font-bold text-orange-500">24</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-gray-400 text-sm font-semibold uppercase">Build Completion</h3>
+                    <p class="text-4xl font-bold text-green-500">42%</p>
+                </div>
+            </div>
+            <!-- Heatmap Placeholder -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-bold text-gray-700 mb-4">Study Heatmap (Last 30 Days)</h3>
+                <div class="grid grid-cols-15 gap-1" id="heatmap">
+                    <!-- JS will fill this -->
+                </div>
+            </div>
+        </section>
+
+        <!-- WIKI -->
+        <section id="wiki" class="p-8 page-content hidden">
+            <header class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">The Westview Wiki</h2>
+                <p class="text-gray-500">Crowdsourced methods. Share your <b>process</b>, not your secrets.</p>
+            </header>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border hover:border-indigo-300 cursor-pointer transition">
+                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2 text-indigo-600">
+                        <i data-lucide="cpu" class="w-5"></i> Circuit Lab: Soldering 101
+                    </h4>
+                    <p class="text-gray-600 text-sm">Best flux types and iron temperatures for 2026 builds.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border hover:border-indigo-300 cursor-pointer transition">
+                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2 text-indigo-600">
+                        <i data-lucide="microscope" class="w-5"></i> Anatomy: ID Speed Techniques
+                    </h4>
+                    <p class="text-gray-600 text-sm">How to memorize muscle groups 40% faster using flashcard grouping.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VAULT AUTH (LOGIN) -->
+        <section id="vault-auth" class="p-8 page-content hidden flex items-center justify-center h-full">
+            <div class="bg-white p-10 rounded-2xl shadow-xl border w-full max-w-md text-center">
+                <i data-lucide="shield-check" class="w-16 h-16 text-indigo-600 mx-auto mb-4"></i>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Vault Access Required</h2>
+                <p class="text-gray-500 mb-6 text-sm">Please enter your team-specific key to access binders.</p>
+                <input type="password" id="vault-pass" placeholder="Enter Team Key..." class="w-full p-4 border rounded-xl mb-4 focus:ring-2 focus:ring-indigo-500 outline-none">
+                <button onclick="tryVaultAccess()" class="w-full bg-indigo-600 text-white p-4 rounded-xl font-bold hover:bg-indigo-700 transition">Unlock Vault</button>
+                <p class="mt-4 text-xs text-gray-400 italic">Hint for demo: <b>westview2026</b></p>
+            </div>
+        </section>
+
+        <!-- VAULT CONTENT -->
+        <section id="vault-content" class="p-8 page-content hidden vault-gradient min-h-full text-white">
+            <header class="mb-8">
+                <h2 class="text-3xl font-bold">The Strategic Vault</h2>
+                <p class="text-indigo-200">Private team binders and test archives.</p>
+            </header>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/20">
+                    <h4 class="font-bold flex items-center gap-2"><i data-lucide="file-text"></i> Astronomy Binder</h4>
+                    <span class="text-xs text-indigo-300">Last updated: 2h ago</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/20 text-gray-400">
+                    <h4 class="font-bold flex items-center gap-2"><i data-lucide="lock" class="w-4"></i> Chem Lab (Locked)</h4>
+                    <span class="text-xs">Access restricted to Team A</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI ORACLE -->
+        <section id="ai-oracle" class="p-8 page-content hidden flex flex-col h-full">
+            <header class="mb-4">
+                <h2 class="text-3xl font-bold text-gray-800">AI Oracle</h2>
+                <p class="text-gray-500">Query the rulebooks and optimize your build data.</p>
+            </header>
+            <div class="flex-1 bg-white border rounded-2xl shadow-inner p-6 overflow-y-auto mb-4" id="chat-box">
+                <div class="bg-indigo-50 p-4 rounded-xl mb-4 text-indigo-700 text-sm max-w-[80%]">
+                    <b>Oracle:</b> Hello Vedanth. I have indexed the 2026 Rulebook. How can I assist Westview today?
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <input type="text" id="ai-input" placeholder="Ask about rule violations, test data, or study plans..." class="flex-1 p-4 border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500">
+                <button onclick="simulateAI()" class="bg-indigo-600 text-white px-8 rounded-xl font-bold hover:bg-indigo-700 transition">Send</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Initializing Icons
+        lucide.createIcons();
+
+        // Page Switching Logic
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        // Vault Authentication
+        function tryVaultAccess() {
+            const pass = document.getElementById('vault-pass').value;
+            if(pass === 'westview2026') {
+                showPage('vault-content');
+            } else {
+                alert('Invalid Key. Access Denied.');
+            }
+        }
+
+        // Simulated AI Logic for Demo
+        function simulateAI() {
+            const input = document.getElementById('ai-input').value;
+            const chatBox = document.getElementById('chat-box');
+            
+            if(!input) return;
+
+            // User message
+            chatBox.innerHTML += `<div class="bg-gray-100 p-4 rounded-xl mb-4 text-gray-800 text-sm ml-auto max-w-[80%] text-right"><b>You:</b> ${input}</div>`;
+            document.getElementById('ai-input').value = '';
+
+            // Simulated AI processing
+            setTimeout(() => {
+                let response = "I'm analyzing the 2026 guidelines for that. One moment...";
+                if(input.toLowerCase().includes('voltage')) response = "According to Section 4.b of the Electric Vehicle rulebook, the total nominal voltage must not exceed 9.0 volts.";
+                if(input.toLowerCase().includes('plan')) response = "Based on your current 42% build progress, I recommend prioritizing the chassis calibration this week and moving to motor testing by Monday.";
+                
+                chatBox.innerHTML += `<div class="bg-indigo-50 p-4 rounded-xl mb-4 text-indigo-700 text-sm max-w-[80%]"><b>Oracle:</b> ${response}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 800);
+        }
+
+        // Generate Heatmap Demo
+        const heatmap = document.getElementById('heatmap');
+        for(let i=0; i<60; i++) {
+            const intensity = Math.floor(Math.random() * 4);
+            const opacities = ['opacity-10', 'opacity-40', 'opacity-70', 'opacity-100'];
+            const div = document.createElement('div');
+            div.className = `w-4 h-4 bg-indigo-600 rounded-sm ${opacities[intensity]}`;
+            heatmap.appendChild(div);
+        }
+    </script>
+</body>
+</html>
